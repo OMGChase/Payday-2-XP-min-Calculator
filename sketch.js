@@ -10,11 +10,11 @@ let submitData, pSubmit, dataLine;
 
 let dataSet;
 
-let exportData;
+let exportData, saveString;
 
 function preload() {
 
-  dataSet = loadStrings('https://raw.githubusercontent.com/OMGChase/Payday-2-XP-min-Calculator/main/data.txt')
+  dataSet = loadStrings('data.txt')
 
 }
 
@@ -164,7 +164,7 @@ function setup() {
 function fCalcXP() {
 
 
-  dataLine = heistSelect.value() + '|' + heistTime.value() + '|' + heistPlayers.value() + '|' + heistXP.value() + '|';
+  dataLine = heistSelect.value() + '|' + heistTime.value() + '|' + heistPlayers.value() + '|' + heistXP.value() + '|\n';
 
   console.log('Data Structure:')
   console.log('Heist|Time|Players|XP|')
@@ -178,6 +178,7 @@ function fCalcXP() {
 
 function fExportData(){
   
-    save(dataSet, 'dataSet.txt');
+  saveString = dataSet.split('\n');
+    saveStrings(saveString, 'dataSet', 'txt');
   
 }
