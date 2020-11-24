@@ -6,26 +6,30 @@ let heistPlayers, pHeistPlayers;
 
 let heistXP, pHeistXP;
 
+let submitData, pSubmit, dataLine;
+
 let dataSet;
 
-function preload(){
-  
-  dataSet = loadStrings()
-  
+let exportData;
+
+function preload() {
+
+  dataSet = loadStrings('https://raw.githubusercontent.com/OMGChase/Payday-2-XP-min-Calculator/main/data.txt')
+
 }
 
 function setup() {
-  
-  noCanvas();  
-  
+
+  noCanvas();
+
   //Setup all the DOM stuff, probably should have done this all in the style.css, but oh well..
-  
+
   pHeistTitle = createP('Heist:');
   pHeistTitle.style('width', '100%');
   pHeistTitle.style('text-align', 'center');
   pHeistTitle.style('font-family', 'arial black');
   pHeistTitle.style('margin-bottom', '5px');
-  
+
   heistSelect = createSelect();
   heistSelect.style('margin-left', 'auto');
   heistSelect.style('margin-right', 'auto');
@@ -33,7 +37,7 @@ function setup() {
   heistSelect.style('font-family', 'arial');
   heistSelect.style('text-align', 'center');
 
-  
+
   heistSelect.option('Aftershock');
   heistSelect.option('Alaskan Deal');
   heistSelect.option('Art Gallery');
@@ -106,38 +110,74 @@ function setup() {
   pHeistTime.style('text-align', 'center');
   pHeistTime.style('font-family', 'arial black');
   pHeistTime.style('margin-bottom', '5px');
-  
+
   heistTime = createInput('mm:ss');
   heistTime.style('margin-left', 'auto');
   heistTime.style('margin-right', 'auto');
   heistTime.style('display', 'block');
   heistTime.style('font-family', 'arial');
   heistTime.style('text-align', 'center');
-  
-  
+
+
   pHeistPlayers = createP('Players:');
   pHeistPlayers.style('width', '100%');
   pHeistPlayers.style('text-align', 'center');
   pHeistPlayers.style('font-family', 'arial black');
   pHeistPlayers.style('margin-bottom', '5px');
-  
+
   heistPlayers = createInput('0-4');
   heistPlayers.style('margin-left', 'auto');
   heistPlayers.style('margin-right', 'auto');
   heistPlayers.style('display', 'block');
   heistPlayers.style('font-family', 'arial');
   heistPlayers.style('text-align', 'center');
-  
+
   pHeistXP = createP('XP Gained:');
   pHeistXP.style('width', '100%');
   pHeistXP.style('text-align', 'center');
   pHeistXP.style('font-family', 'arial black');
   pHeistXP.style('margin-bottom', '5px');
-  
+
   heistXP = createInput('0');
   heistXP.style('margin-left', 'auto');
   heistXP.style('margin-right', 'auto');
   heistXP.style('display', 'block');
   heistXP.style('font-family', 'arial');
   heistXP.style('text-align', 'center');
+
+  submitData = createButton('Submit');
+  submitData.style('margin-top', '10px');
+  submitData.style('margin-left', 'auto');
+  submitData.style('margin-right', 'auto');
+  submitData.style('display', 'block');
+  submitData.mousePressed(fCalcXP);
+
+  exportData = createButton('Export Data List');
+  exportData.style('margin-top', '10px');
+  exportData.style('margin-left', 'auto');
+  exportData.style('margin-right', 'auto');
+  exportData.style('display', 'block');
+  exportData.mousePressed(fExportData);
+
+}
+
+function fCalcXP() {
+
+
+  dataLine = heistSelect.value() + '|' + heistTime.value() + '|' + heistPlayers.value() + '|' + heistXP.value() + '|';
+
+  console.log('Data Structure:')
+  console.log('Heist|Time|Players|XP|')
+  console.log(dataLine);
+
+  dataSet = dataSet + dataLine;
+
+  console.log(dataSet);
+
+}
+
+function fExportData(){
+  
+    save(dataSet, 'dataSet.txt');
+  
 }
