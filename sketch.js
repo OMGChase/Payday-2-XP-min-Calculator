@@ -1,15 +1,9 @@
 let heistSelect, pHeistTitle;
-
 let heistTime, pHeistTime;
-
 let heistPlayers, pHeistPlayers;
-
 let heistXP, pHeistXP;
-
 let submitData, pSubmit, dataLine;
-
 let dataSet;
-
 let exportData, saveString;
 
 function preload() {
@@ -150,7 +144,7 @@ function setup() {
   submitData.style('margin-left', 'auto');
   submitData.style('margin-right', 'auto');
   submitData.style('display', 'block');
-  submitData.mousePressed(fCalcXP);
+  submitData.mousePressed(fAppendData);
 
   exportData = createButton('Export Data List');
   exportData.style('margin-top', '10px');
@@ -161,24 +155,16 @@ function setup() {
 
 }
 
-function fCalcXP() {
-
+function fAppendData() {
 
   dataLine = heistSelect.value() + '|' + heistTime.value() + '|' + heistPlayers.value() + '|' + heistXP.value() + '|\n';
-
-  console.log('Data Structure:')
-  console.log('Heist|Time|Players|XP|')
-  console.log(dataLine);
-
   dataSet = dataSet + dataLine;
-
-  console.log(dataSet);
 
 }
 
-function fExportData(){
-  
+function fExportData() {
+
   saveString = dataSet.split('\n');
-    saveStrings(saveString, 'dataSet', 'txt');
-  
+  saveStrings(saveString, 'data', 'txt');
+
 }
