@@ -1,0 +1,73 @@
+{
+
+"heist_data":[
+
+{
+"heist": "Aftershock",
+  "time": "16:35",
+  "players": "1",
+"xp": "1513000"
+},
+{
+"heist": "Alaskan Deal",
+  "time": "12:56",
+  "players": "1",
+  "xp": "774300"
+},
+{
+  "heist": "Art Gallery",
+  "time": "10:18",
+  "players": "1",
+  "xp": "289657"
+},
+{
+  "heist": "Bank Heist: Cash",
+  "time": "15:18",
+  "players": "2",
+  "xp": "558000"
+},
+{
+  "heist": "Bank Heist: Deposit",
+  "time": "8:53",
+  "players": "2",
+  "xp": "558000"
+},
+{
+  "heist": "Bank Heist: Gold",
+  "time": "8:35",
+  "players": "2",
+  "xp": "558000"
+},
+{
+  "heist": "Beneath the Mountain",
+  "time": "14:35",
+  "players": "2",
+  "xp": "1372500"
+},
+{
+  "heist": "Big Oil",
+  "time": "13:11",
+  "players": "2",
+  "xp": "1658250"
+},
+{
+  "heist": "Boiling Point",
+  "time": "14:20",
+  "players": "2",
+  "xp": "2104500"
+},
+{
+  "heist": "Brooklyn 10-10",
+  "time": "10:34",
+  "players": "2",
+  "xp": "1372500"
+},
+{
+  "heist": "Brooklyn Bank",
+  "time": "15:46",
+  "players": "2",
+  "xp": "1180800"
+}
+]
+
+}
