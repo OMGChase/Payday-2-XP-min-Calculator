@@ -3,34 +3,35 @@ let heistTime, pHeistTime;
 let heistPlayers, pHeistPlayers;
 let heistXP, pHeistXP;
 let submitData, pSubmit, dataLine;
-let dataSet;
-let exportData, saveString;
+let preHighXpMin, currXpMin, timeInSec, bestHeist, pBestHeist;
+
+//testing new features
+let jsonData = {};
+let jsonLength;
+let dataHeists = [];
+let dataTotal = [];
+let timeStr = [];
 
 function preload() {
 
-  dataSet = loadStrings('data.txt')
+  jsonData = loadJSON('heistData.json');
 
 }
 
 function setup() {
 
+  preHighXpMin = 0;
   noCanvas();
+  //Testing new features
+  jsonLength = jsonData.heist_data.length;
 
-  //Setup all the DOM stuff, probably should have done this all in the style.css, but oh well..
 
+  //Setup all the DOM stuff
   pHeistTitle = createP('Heist:');
-  pHeistTitle.style('width', '100%');
-  pHeistTitle.style('text-align', 'center');
-  pHeistTitle.style('font-family', 'arial black');
-  pHeistTitle.style('margin-bottom', '5px');
+  pHeistTitle.addClass('headerLabels');
 
   heistSelect = createSelect();
-  heistSelect.style('margin-left', 'auto');
-  heistSelect.style('margin-right', 'auto');
-  heistSelect.style('display', 'block');
-  heistSelect.style('font-family', 'arial');
-  heistSelect.style('text-align', 'center');
-
+  heistSelect.addClass('selectors');
 
   heistSelect.option('Aftershock');
   heistSelect.option('Alaskan Deal');
@@ -100,71 +101,96 @@ function setup() {
   heistSelect.option('White Xmas');
 
   pHeistTime = createP('Time:');
-  pHeistTime.style('width', '100%');
-  pHeistTime.style('text-align', 'center');
-  pHeistTime.style('font-family', 'arial black');
-  pHeistTime.style('margin-bottom', '5px');
+  pHeistTime.addClass('headerLabels');
 
-  heistTime = createInput('mm:ss');
-  heistTime.style('margin-left', 'auto');
-  heistTime.style('margin-right', 'auto');
-  heistTime.style('display', 'block');
-  heistTime.style('font-family', 'arial');
-  heistTime.style('text-align', 'center');
-
+  heistTime = createInput('').attribute('placeholder', 'mm:ss');
+  heistTime.addClass('inputs');
 
   pHeistPlayers = createP('Players:');
-  pHeistPlayers.style('width', '100%');
-  pHeistPlayers.style('text-align', 'center');
-  pHeistPlayers.style('font-family', 'arial black');
-  pHeistPlayers.style('margin-bottom', '5px');
+  pHeistPlayers.addClass('headerLabels');
 
-  heistPlayers = createInput('0-4');
-  heistPlayers.style('margin-left', 'auto');
-  heistPlayers.style('margin-right', 'auto');
-  heistPlayers.style('display', 'block');
-  heistPlayers.style('font-family', 'arial');
-  heistPlayers.style('text-align', 'center');
+  heistPlayers = createInput('').attribute('placeholder', '1-4');
+  heistPlayers.addClass('inputs');
 
   pHeistXP = createP('XP Gained:');
-  pHeistXP.style('width', '100%');
-  pHeistXP.style('text-align', 'center');
-  pHeistXP.style('font-family', 'arial black');
-  pHeistXP.style('margin-bottom', '5px');
+  pHeistXP.addClass('headerLabels');
 
-  heistXP = createInput('0');
-  heistXP.style('margin-left', 'auto');
-  heistXP.style('margin-right', 'auto');
-  heistXP.style('display', 'block');
-  heistXP.style('font-family', 'arial');
-  heistXP.style('text-align', 'center');
+  heistXP = createInput('').attribute('placeholder', '0');
+  heistXP.addClass('inputs');
 
   submitData = createButton('Submit');
-  submitData.style('margin-top', '10px');
-  submitData.style('margin-left', 'auto');
-  submitData.style('margin-right', 'auto');
-  submitData.style('display', 'block');
+  submitData.addClass('buttons');
   submitData.mousePressed(fAppendData);
 
-  exportData = createButton('Export Data List');
-  exportData.style('margin-top', '10px');
-  exportData.style('margin-left', 'auto');
-  exportData.style('margin-right', 'auto');
-  exportData.style('display', 'block');
+  exportData = createButton('Export JSON');
+  exportData.addClass('buttons');
   exportData.mousePressed(fExportData);
+  
+  pBestHeist = createP('Waiting for Data');
+  pBestHeist.addClass('headerLabels');
 
+
+  for (let i = 0; i < jsonLength; i++) {
+
+
+    dataHeists.push(jsonData.heist_data[i]);
+
+  }
+  
+  dataTotal = jsonData;
+  
+    fCalcXPMin();
+  
 }
 
 function fAppendData() {
 
-  dataLine = heistSelect.value() + '|' + heistTime.value() + '|' + heistPlayers.value() + '|' + heistXP.value() + '|\n';
-  dataSet = dataSet + dataLine;
+  dataHeists[dataHeists.length] = {
+    heist: heistSelect.value(),
+    time: heistTime.value(),
+    players: heistPlayers.value(),
+    xp: heistXP.value()
+  };
 
+  dataTotal.heist_data = dataHeists;
+  
+  fCalcXPMin();
+  
 }
 
 function fExportData() {
 
-  saveString = dataSet.split('\n');
-  saveStrings(saveString, 'data', 'txt');
+  saveJSON(dataTotal, 'heistData.json');
 
+}
+
+function mousePressed(){
+  
+//debug stuff can go here.
+  
+}
+
+function fCalcXPMin(){
+  
+  for (i = 0; i < dataHeists.length; i ++){
+    
+    timeStr = dataHeists[i].time.split(':');
+    timeInSec = ((timeStr[0] * 60) + timeStr[1]);
+    currXpMin = (dataHeists[i].xp / timeInSec) * 60;
+    
+    
+    if (currXpMin > preHighXpMin){
+      
+      pBestHeist.html('Current Best: ' + dataHeists[i].heist + ' at ' + round(currXpMin, 2) + ' xp/min, with ' + dataHeists[i].players + ' player(s).');
+      preHighXpMin = currXpMin;
+      
+    }else{
+      
+
+      
+    }
+    
+    
+  }
+  
 }
