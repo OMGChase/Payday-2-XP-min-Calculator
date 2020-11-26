@@ -1,16 +1,10 @@
-let heistSelect, pHeistTitle;
-let heistTime, pHeistTime;
-let heistPlayers, pHeistPlayers;
-let heistXP, pHeistXP;
-let submitData, pSubmit, dataLine;
-let preHighXpMin, currXpMin, timeInSec, bestHeist, pBestHeist;
+//Declaring all DOM elements here
+let pHeistTitle, heistSelect, pHeistTime, heistTime, pHeistPlayers, heistPlayers, pHeistXP, heistXP, pBestHeist, bRefresh;
+let totalTime, totalXp;
+let prevXp, currXp;
 
-//testing new features
-let jsonData = {};
-let jsonLength;
-let dataHeists = [];
-let dataTotal = [];
-let timeStr = [];
+//Main 'database' for heists completed
+let jsonData;
 
 function preload() {
 
@@ -20,19 +14,75 @@ function preload() {
 
 function setup() {
 
-  preHighXpMin = 0;
   noCanvas();
-  //Testing new features
-  jsonLength = jsonData.heist_data.length;
+  setupDOM();
+  fRefresh();
+  
+}
 
+function fAppendData() { //Adding data to the json file
+
+  totalTime = 0;
+  totalXp = 0;
+
+  for (i = 0; i < jsonData.data.length; i++)
+
+    if (heistSelect.value() == jsonData.data[i].heist) { //Match selected heist to counterpart in json file
+
+      jsonData.data[i].entries.push({ //Add entries with current entered values
+        "time": heistTime.value(),
+        "players": heistPlayers.value(),
+        "xp": heistXP.value()
+      });
+
+
+      for (j = 0; j < jsonData.data[i].entries.length; j++) { //Calculate averages for last entered heist
+
+
+        totalTime = totalTime + jsonData.data[i].entries[j].time; //Get total playtime
+        totalXp = totalXp + int(jsonData.data[i].entries[j].xp); //Get total Xp
+
+      }
+
+      jsonData.data[i].avgTime = totalTime / (jsonData.data[i].entries.length); //Calculate average time and add to json
+      jsonData.data[i].avgXp = totalXp / (jsonData.data[i].entries.length); //Calculate average xp and add to json
+
+    }
+
+  fRefresh();
+  
+}
+
+function fExportData() { //Saving the json file as heistData.json. In future look at local saving/overwriting the heistData.json asset???
+
+  saveJSON(jsonData, 'heistData.json', false);
+
+}
+
+function mousePressed() {
+
+
+}
+
+
+
+function setupDOM() {
 
   //Setup all the DOM stuff
   pHeistTitle = createP('Heist:');
-  pHeistTitle.addClass('headerLabels');
-
   heistSelect = createSelect();
-  heistSelect.addClass('selectors');
+  pHeistTime = createP('Time:');
+  heistTime = createInput('').attribute('placeholder', 'mm:ss');
+  pHeistPlayers = createP('Players:');
+  heistPlayers = createInput('').attribute('placeholder', '1-4');
+  pHeistXP = createP('XP Gained:');
+  heistXP = createInput('').attribute('placeholder', '0');
+  submitData = createButton('Submit');
+  exportData = createButton('Export JSON');
+  pBestHeist = createP('Waiting for Data');
+  bRefresh = createButton('Refresh Averages');
 
+  //Drop Down Selection. There has to be a better way using the json data and a loop??
   heistSelect.option('Aftershock');
   heistSelect.option('Alaskan Deal');
   heistSelect.option('Art Gallery');
@@ -100,97 +150,86 @@ function setup() {
   heistSelect.option('Watchdogs');
   heistSelect.option('White Xmas');
 
-  pHeistTime = createP('Time:');
+  //Selectors
+  heistSelect.addClass('selectors');
+
+  //Headers
+  pHeistTitle.addClass('headerLabels');
   pHeistTime.addClass('headerLabels');
-
-  heistTime = createInput('').attribute('placeholder', 'mm:ss');
-  heistTime.addClass('inputs');
-
-  pHeistPlayers = createP('Players:');
   pHeistPlayers.addClass('headerLabels');
-
-  heistPlayers = createInput('').attribute('placeholder', '1-4');
-  heistPlayers.addClass('inputs');
-
-  pHeistXP = createP('XP Gained:');
   pHeistXP.addClass('headerLabels');
+  pBestHeist.addClass('headerLabels');
 
-  heistXP = createInput('').attribute('placeholder', '0');
+  //Input Boxes
+  heistTime.addClass('inputs');
+  heistPlayers.addClass('inputs');
   heistXP.addClass('inputs');
 
-  submitData = createButton('Submit');
+  //Buttons
   submitData.addClass('buttons');
   submitData.mousePressed(fAppendData);
 
-  exportData = createButton('Export JSON');
   exportData.addClass('buttons');
   exportData.mousePressed(fExportData);
-  
-  pBestHeist = createP('Waiting for Data');
-  pBestHeist.addClass('headerLabels');
 
-
-  for (let i = 0; i < jsonLength; i++) {
-
-
-    dataHeists.push(jsonData.heist_data[i]);
-
-  }
-  
-  dataTotal = jsonData;
-  
-    fCalcXPMin();
-  
-}
-
-function fAppendData() {
-
-  dataHeists[dataHeists.length] = {
-    heist: heistSelect.value(),
-    time: heistTime.value(),
-    players: heistPlayers.value(),
-    xp: heistXP.value()
-  };
-
-  dataTotal.heist_data = dataHeists;
-  
-  fCalcXPMin();
-  
-}
-
-function fExportData() {
-
-  saveJSON(dataTotal, 'heistData.json');
+  bRefresh.addClass('buttons');
+  bRefresh.mousePressed(fRefresh);
 
 }
 
-function mousePressed(){
+function fRefresh() {//Refresh all items that have data
   
-//debug stuff can go here.
-  
-}
+  for (i = 0; i < jsonData.data.length; i++) {
 
-function fCalcXPMin(){
-  
-  for (i = 0; i < dataHeists.length; i ++){
-    
-    timeStr = dataHeists[i].time.split(':');
-    timeInSec = ((timeStr[0] * 60) + timeStr[1]);
-    currXpMin = (dataHeists[i].xp / timeInSec) * 60;
-    
-    
-    if (currXpMin > preHighXpMin){
-      
-      pBestHeist.html('Current Best: ' + dataHeists[i].heist + ' at ' + round(currXpMin, 2) + ' xp/min, with ' + dataHeists[i].players + ' player(s).');
-      preHighXpMin = currXpMin;
-      
-    }else{
-      
+    totalTime = 0;  //Reset these values after each 'heist' entry
+    totalXp = 0;    //Reset these values after each 'heist' entry
 
-      
+    for (j = 0; j < jsonData.data[i].entries.length; j++) { //Go through each heist
+
+      if (jsonData.data[i].entries.length > 0) {  //Check if there is data to work with
+        totalTime = totalTime + convertToSeconds(jsonData.data[i].entries[j].time); //Get total playtime
+        totalXp = totalXp + int(jsonData.data[i].entries[j].xp); //Get total Xp
+
+      }
+
+      jsonData.data[i].avgTime = totalTime / (jsonData.data[i].entries.length); //Calculate average time and add to json
+      jsonData.data[i].avgXp = totalXp / (jsonData.data[i].entries.length); //Calculate average xp and add to json
+
     }
+  }
+
+  fCurrentBest();
+  
+}
+
+function fCurrentBest(){
+  
+  prevXp = 0;
+  currXp = 0;
+  
+  for (i = 0; i < jsonData.data.length; i ++){
+
+    currXp = jsonData.data[i].avgXp;
     
+    if (currXp > prevXp){
+      
+      //____________-NOTE-____________       
+      //Need to check here if it's reading the updated average xp instead or just showing the highest the avergae has been
+      
+      pBestHeist.html('Current Best Heist is ' + jsonData.data[i].heist + ' with an average of ' + int(jsonData.data[i].avgXp)/60 + ' xp/min.');
+
+    }    
+    
+    prevXp = currXp;
     
   }
-  
+
+}
+
+function convertToSeconds(mmss) { //Convert the mm:ss format to seconds
+
+  var timeSplit = mmss.split(':');
+  timeSplit[0] = timeSplit[0] * 60;
+  return (int(timeSplit[0]) + int(timeSplit[1]));
+
 }
