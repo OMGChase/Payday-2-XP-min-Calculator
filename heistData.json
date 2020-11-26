@@ -1,73 +1,472 @@
 {
-
-"heist_data":[
-
-{
-"heist": "Aftershock",
-  "time": "16:35",
-  "players": "1",
-"xp": "1513000"
-},
-{
-"heist": "Alaskan Deal",
-  "time": "12:56",
-  "players": "1",
-  "xp": "774300"
-},
-{
-  "heist": "Art Gallery",
-  "time": "10:18",
-  "players": "1",
-  "xp": "289657"
-},
-{
-  "heist": "Bank Heist: Cash",
-  "time": "15:18",
-  "players": "2",
-  "xp": "558000"
-},
-{
-  "heist": "Bank Heist: Deposit",
-  "time": "8:53",
-  "players": "2",
-  "xp": "558000"
-},
-{
-  "heist": "Bank Heist: Gold",
-  "time": "8:35",
-  "players": "2",
-  "xp": "558000"
-},
-{
-  "heist": "Beneath the Mountain",
-  "time": "14:35",
-  "players": "2",
-  "xp": "1372500"
-},
-{
-  "heist": "Big Oil",
-  "time": "13:11",
-  "players": "2",
-  "xp": "1658250"
-},
-{
-  "heist": "Boiling Point",
-  "time": "14:20",
-  "players": "2",
-  "xp": "2104500"
-},
-{
-  "heist": "Brooklyn 10-10",
-  "time": "10:34",
-  "players": "2",
-  "xp": "1372500"
-},
-{
-  "heist": "Brooklyn Bank",
-  "time": "15:46",
-  "players": "2",
-  "xp": "1180800"
-}
-]
-
+  "data": [
+    {
+      "heist": "Aftershock",
+      "entries": [
+        {
+          "time": "16:35",
+          "players": "1",
+          "xp": "1513000"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Alaskan Deal",
+      "entries": [
+        {
+          "time": "12:56",
+          "players": "1",
+          "xp": "774300"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Art Gallery",
+      "entries": [
+        {
+          "time": "10:18",
+          "players": "1",
+          "xp": "289657"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Bank Heist: Cash",
+      "entries": [
+        {
+          "time": "15:18",
+          "players": "2",
+          "xp": "558000"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Bank Heist: Deposit",
+      "entries": [
+        {
+          "time": "8:53",
+          "players": "2",
+          "xp": "558000"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Bank Heist: Gold",
+      "entries": [
+        {
+          "time": "8:35",
+          "players": "2",
+          "xp": "558000"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Beneath the Mountain",
+      "entries": [
+        {
+          "time": "14:35",
+          "players": "2",
+          "xp": "1372500"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Big Oil",
+      "entries": [
+        {
+          "time": "13:11",
+          "players": "2",
+          "xp": "1658250"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Breakin' Feds",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Brooklyn 10-10",
+      "entries": [
+        {
+          "time": "10:34",
+          "players": "2",
+          "xp": "1372500"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Brooklyn Bank",
+      "entries": [
+        {
+          "time": "15:46",
+          "players": "2",
+          "xp": "1180800"
+        }
+      ],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Car Shop",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Cook Off",
+      "entries": [
+        {
+          "time": "25:32",
+          "players": "2",
+          "xp": "2562000"
+        }
+      ],
+      "avgTime": null,
+      "avgXp": 2562000
+    },
+    {
+      "heist": "Counterfeit",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Cursed Kill Room",
+      "entries": [
+        {
+          "time": "15:40",
+          "players": "2",
+          "xp": "1391250"
+        }
+      ],
+      "avgTime": null,
+      "avgXp": 1391250
+    },
+    {
+      "heist": "Diamond Heist",
+      "entries": [
+        {
+          "time": "11:54",
+          "players": "2",
+          "xp": "969900"
+        }
+      ],
+      "avgTime": null,
+      "avgXp": 969900
+    },
+    {
+      "heist": "Diamond Store",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Election Day",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Firetarter",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "First World Bank",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Four Stores",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Framing Frame",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "GO Bank",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Goat Simulator",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Golden Grin Casino",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Green Bridge",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Heat Street",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Hell's Island",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Henry's Rock",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Hotline Miami",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Hoxton Breakout",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Hoxton Revenge",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Jewelry Store",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Lab Rats",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Mallcrasher",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Meltdown",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Murky Station",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Nightclub",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "No Mercy",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Panic Room",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Prison Nightmare",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Rats",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Reservoir Dogs Heist",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Safehouse Nightmare",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Safehouse Raid",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Santa's Workshop",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Scarface Mansion",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Shacklethorne Auction",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Shadow Raid",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Slaughterhouse",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Stealing Xmas",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "The Alesso Heist",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "The Big Bank",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "The Biker Heist",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "The Bomb: Dockyard",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "The Bomb: Forest",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "The Diamond",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "The White House",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "The Yacht Heist",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Transport",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Transport: Train",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Ukranian Job",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Undercover",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "Watchdogs",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    },
+    {
+      "heist": "White Xmas",
+      "entries": [],
+      "avgTime": "",
+      "avgXp": ""
+    }
+  ]
 }
