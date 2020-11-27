@@ -1,16 +1,18 @@
 html,
 body {
 
-  margin: 0;
+  margin-top: 5vh;
   padding: 0;
-  background-color: #19202B;
+  background-color: #222022 ;
   color: white;
+  display: block;
+
 
 }
 
 canvas {
 
-  display: block;
+  display: none;
 
 }
 
@@ -49,4 +51,31 @@ canvas {
   margin-right: auto;
   display: block;
 
+}
+
+.finalText {
+  
+  text-align: center;
+  font-family: 'arial black';
+  margin-bottom: 10px;
+
+
+
+}
+
+h3 {
+
+  font-size: 12pt;
+  font-family: arial;
+  text-decoration: underline;
+  margin-bottom: 2px;
+
+}
+
+h1{
+  
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #3DD341;
+  
 }
